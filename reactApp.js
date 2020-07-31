@@ -32,7 +32,7 @@ class Team extends React.Component {
         const shotPercentage = Math.round((this.state.score / this.state.shots) * 100)
         shotPercentageDiv = (
             <div>
-                <strong>Shooting %: {shotPercentage}</strong>
+                <strong>Persentage %: {shotPercentage}</strong>
             </div>
 
         )
@@ -67,12 +67,18 @@ function Game (props){
         <div className="Game">
             <h1>Welcome To {props.venue}</h1>
             <div className="stats">
-               <Team name="We're All Bowlers" logo="./Images/AMF.png" />
+               <Team 
+                  name= {props.visitingTeam.name} 
+                  logo= {props.visitingTeam.logoSrc}
+                />
 
                <div className="versus">
                  <h1>VS</h1>
             </div>
-               <Team name="King Pins " logo="./Images/kingpins.png" />
+               <Team 
+                  name= {props.homeTeam.name} 
+                  logo= {props.homeTeam.logoSrc}
+                />
             </div>
         </div>
     )
@@ -83,9 +89,37 @@ function Game (props){
 
 
 function App (props) {
+    const afm ={
+        name: 'We Are All Bowlers',
+        logoSrc: './Images/AMF.png'
+    }
+
+    const kingPins = {
+        name: 'King Pins',
+        logoSrc: './Images/kingpins.png'
+    }
+
+    const olympiaLanes = {
+        name: 'Olympia Lanes',
+        logoSrc: './Images/Olympia Lanes.png'
+    }
+
+    const stardusBowl = {
+        name: 'Stardus Bowl lll',
+        logoSrc: './Images/Stardus Bowl lll.png'
+    }
     return (
       <div className="App">
-          <Game venue="Bowling Night Game Pizza and Beer" />
+          <Game 
+          venue="Bowling Night Game Pizza and Beer"
+          homeTeam = {afm}
+          visitingTeam={kingPins}
+          />
+          <Game 
+          venue="Bowling Day Game burgers and Soda" 
+          homeTeam={olympiaLanes}
+          visitingTeam={stardusBowl}
+          />
       </div>
     )
   }
